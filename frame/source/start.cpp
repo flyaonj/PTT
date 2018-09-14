@@ -87,9 +87,9 @@ class PocServer: public ServerApplication,public Timerable
     public:
         PocServer()
         {
-            //addSubsystem(new PTT::UDP::Server);
+            CREATE_PTT_LOG("POCSERVER");
             addSubsystem(new ptt::sche::ScheTimerCtr);
-            CREATE_PTT_LOG(string("POCSERVER"));
+            addSubsystem(new ptt::udp::Server);
         }
 
         ~PocServer()

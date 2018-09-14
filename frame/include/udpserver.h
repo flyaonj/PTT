@@ -9,11 +9,11 @@
 #include "Poco/Net/SocketReactor.h"
 #include "Poco/Net/DatagramSocket.h"
 #include "RedisClient.h"
+#include "pttlog.h"
 
 
 using Poco::Util::Subsystem;
 using Poco::Util::Application;
-using Poco::SharedPtr;
 using Poco::SharedPtr;
 using Poco::Runnable;
 using Poco::Thread;
@@ -23,6 +23,7 @@ using Poco::Net::DatagramSocket;
 namespace ptt{
     namespace udp{
 
+    #define PTT_UDP_ACCEPTOR_PRE "ptt.udpacceptors"
 
     enum Status {
         kRunning = 1,
@@ -31,12 +32,10 @@ namespace ptt{
         kStopped = 4,
     };
 
-    
-    
     class RecvThread:public Runnable
     {
         public:
-            RecvThread(const SocketAddress& address);
+            RecvThread(const string& acceptor, const SocketAddress& address);
         
             ~RecvThread();
 
@@ -44,6 +43,7 @@ namespace ptt{
 
             void start();        
         private:
+            string m_acceptor;
             DatagramSocket m_socekt;
             Poco::Thread m_thread;    
             Status m_status;                
@@ -61,11 +61,12 @@ namespace ptt{
                 virtual void uninitialize();
                 ~Server();
 
-            private:       
+            private:  
                 typedef  SharedPtr<RecvThread>  RecvThreadPtr;     
                 std::vector<RecvThreadPtr>  recv_threads;
                 size_t recv_buf_size_;   
                 Poco::Thread m_thread; 
+                DECLARE_PTT_LOG();
         };
     }
 }

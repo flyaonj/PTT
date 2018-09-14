@@ -53,8 +53,8 @@ try{ \
 #define logInfo(_fmt,...) \
 try{ \
     if(log.getLog()->isInfoEnabled()) \
-    log.getLog()->info(_fmt, ##__VA__ARGS); \
-}catch(){}
+    log.getLog()->info(_fmt, ##__VA_ARGS__); \
+}catch(...){}
 #else
 #define logInfo(_fmt,...)
 #endif
@@ -64,8 +64,8 @@ try{ \
 #define logWarn(_fmt,...) \
 try{ \
     if(log.getLog()->isWarnEnabled()) \
-    log.getLog()->warn(_fmt, ##__VA__ARGS); \
-}catch(){}
+    log.getLog()->warn(_fmt, ##__VA_ARGS__); \
+}catch(...){}
 #else
 #define logWarn(_fmt,...)
 #endif
@@ -74,8 +74,8 @@ try{ \
 #define logError(_fmt,...) \
 try{ \
     if(log.getLog()->isErrorEnabled()) \
-    log.getLog()->error(_fmt, ##__VA__ARGS); \
-}catch(){}
+    log.getLog()->error(_fmt, ##__VA_ARGS__); \
+}catch(...){}
 #else
 #define logError(_fmt,...)
 #endif
@@ -85,8 +85,8 @@ try{ \
 #define logFatal(_fmt,...) \
 try{ \
     if(log.getLog()->isFatalEnabled()) \
-    log.getLog()->fatal(_fmt, ##__VA__ARGS); \
-}catch(){}
+    log.getLog()->fatal(_fmt, ##__VA_ARGS__); \
+}catch(...){}
 #else
 #define logFatal(_fmt,...)
 #endif
