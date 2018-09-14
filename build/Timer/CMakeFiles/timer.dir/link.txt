@@ -1,1 +1,0 @@
-/usr/bin/c++       CMakeFiles/timer.dir/test.o  -o timer  -L/usr/local/lib -rdynamic -lpthread -lPocoFoundation -lPocoUtil -Wl,-rpath,/usr/local/lib 
