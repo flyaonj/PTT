@@ -1,0 +1,1 @@
+/home/yy/test/build/frame/CMakeFiles/frame.dir
